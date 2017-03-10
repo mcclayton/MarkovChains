@@ -1,27 +1,13 @@
 'use strict';
-require('babel-register')();
 const _ = require('lodash');
 const Tokenizer = require('sentence-tokenizer');
+const Utils = require('./utils');
 
-
-const fs = require('fs');
 
 const SPECIAL_VALUES = {
     startWord: "__START__",
     endWord: "__END__",
     noWord: "__NONE__"
-};
-
-const readFile = (filePath) => {
-    return new Promise(function (fulfill, reject) {
-        fs.readFile(filePath, 'utf8', (err, data) => {
-            if (err) {
-                reject(err);
-            } else {
-                fulfill(data);
-            }
-        });
-    });
 };
 
 const generateMarkovChain = (text) => {
@@ -45,12 +31,12 @@ const generateMarkovChain = (text) => {
 };
 
 const generateTextFromChain = (markovChain, numberOfSentences) => {
-    let newSentence = '';
+    let newSentence = "";
     let currentWord = SPECIAL_VALUES.startWord;
     let nextWord;
     let sentenceNum = 0;
     while (sentenceNum < numberOfSentences) {
-        const randomIndex = randomIntFromInterval(0, markovChain[currentWord].length-1);
+        const randomIndex = Utils.randomIntFromInterval(0, markovChain[currentWord].length-1);
         nextWord = markovChain[currentWord][randomIndex];
         if (nextWord === SPECIAL_VALUES.endWord || nextWord === SPECIAL_VALUES.noWord) {
             currentWord = SPECIAL_VALUES.startWord;
@@ -64,11 +50,7 @@ const generateTextFromChain = (markovChain, numberOfSentences) => {
     return newSentence;
 };
 
-const randomIntFromInterval = (min, max) => {
-    return Math.floor(Math.random()*(max-min+1)+min);
-};
-
-readFile('./corpus.txt').then((data) => {
+Utils.readFile('./corpus.txt').then((data) => {
     const chain = generateMarkovChain(data);
     console.log(generateTextFromChain(chain, 5));
 }, (err) => {
