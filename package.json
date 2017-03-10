@@ -1,9 +1,9 @@
 {
   "scripts": {
-    "build": "babel src -d lib"
+    "build": "babel src -d lib",
+    "start": "node ./lib/markov.js"
   },
   "dependencies": {
-    "babel-register": "6.23.0",
     "fs": "0.0.1-security",
     "lodash": "4.17.4",
     "sentence-tokenizer": "0.0.7"
