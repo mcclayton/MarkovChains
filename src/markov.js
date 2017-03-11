@@ -12,15 +12,14 @@ const SPECIAL_VALUES = {
 
 const generateMarkovChain = (text) => {
     const markovChain = {};
-    var tokenizer = new Tokenizer();
+    const tokenizer = new Tokenizer();
     tokenizer.setEntry(text);
     const sentences = tokenizer.getSentences();
-    //const sentences = text.match(/[^\.!\?]+[\.!\?]+/g) || [];
 
-    sentences.forEach((sentence) => {
+    _.forEach(sentences, (sentence) => {
         sentence = `${SPECIAL_VALUES.startWord} ${sentence} ${SPECIAL_VALUES.endWord}`;
         const words = sentence.match(/\S+/g) || [];
-        for (let i=0; i<words.length; i++) {
+        for (let i=0; i < words.length; i++) {
             const nextWord = i < words.length - 1 ? words[i+1] : SPECIAL_VALUES.noWord;
             const wordsFollowing = markovChain[words[i]] || [];
             wordsFollowing.push(nextWord);
