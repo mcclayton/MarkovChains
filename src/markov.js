@@ -49,8 +49,6 @@ const generateTextFromChain = (markovChain, numberOfSentences = 1) => {
     startOfSentence.shift();    // Remove start of sentence delimiter
     let newSentence = startOfSentence.join(' ') + ' ';
 
-    //let currentWord = SPECIAL_DELIMITERS.startWord;
-
     let nextWord;
     let sentenceNum = 0;
     while (sentenceNum < numberOfSentences) {
