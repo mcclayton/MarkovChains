@@ -1,6 +1,6 @@
 const SPECIAL_DELIMITERS= {
-    startWord: '__START__',
-    endWord: '__END__',
+    startSentence: '__START__',
+    endSentence: '__END__',
     noWord: '__NONE__',
     delimiter: '__DELIM__'
 };

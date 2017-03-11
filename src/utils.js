@@ -18,7 +18,7 @@ const readFile = (filePath) => {
  * Given a markov chain, will return a random start of a sentence.
  */
 const getRandomSentenceStart = (markovChain) => {
-    const startingKeys = _.filter(_.keys(markovChain), (k) => k.startsWith(SPECIAL_DELIMITERS.startWord));
+    const startingKeys = _.filter(_.keys(markovChain), (k) => k.startsWith(SPECIAL_DELIMITERS.startSentence));
     const randomIndex = randomIntFromInterval(0, startingKeys.length - 1);
     return startingKeys[randomIndex];
 };

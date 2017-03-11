@@ -12,7 +12,7 @@ const generateMarkovChain = (text, windowSize = 1) => {
     // Groom the corpus by adding special delimiters for the start and end of sentences
     const groomedCorpus = _.reduce(sentences, (result, sentence) => {
         // Add special delimeters to denote start and end of each sentence
-        return `${result} ${SPECIAL_DELIMITERS.startWord} ${sentence} ${SPECIAL_DELIMITERS.endWord}`;
+        return `${result} ${SPECIAL_DELIMITERS.startSentence} ${sentence} ${SPECIAL_DELIMITERS.endSentence}`;
     }, '');
 
     const words = groomedCorpus.match(/\S+/g) || [];
@@ -54,7 +54,7 @@ const generateTextFromChain = (markovChain, numberOfSentences = 1) => {
     while (sentenceNum < numberOfSentences) {
         const randomIndex = Utils.randomIntFromInterval(0, markovChain[currentWordWindow].length - 1);
         nextWord = markovChain[currentWordWindow][randomIndex];
-        if (nextWord === SPECIAL_DELIMITERS.endWord || nextWord === SPECIAL_DELIMITERS.noWord) {
+        if (nextWord === SPECIAL_DELIMITERS.endSentence || nextWord === SPECIAL_DELIMITERS.noWord) {
             // Finished a sentence.
             sentenceNum++;
             newSentence += '\n';
