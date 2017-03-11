@@ -1,8 +1,6 @@
-'use strict';
-const _ = require('lodash');
-const Tokenizer = require('sentence-tokenizer');
-const Utils = require('./utils');
-
+import _ from 'lodash';
+import Tokenizer from 'sentence-tokenizer';
+import Utils from './utils';
 
 const SPECIAL_VALUES = {
     startWord: "__START__",
