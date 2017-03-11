@@ -73,11 +73,7 @@ const generateTextFromChain = (markovChain, numberOfSentences = 1) => {
         } else {
             newSentence += `${nextWord} `;
             // Update the currentWordWindow
-            let currWindowArray = currentWordWindow.split(SPECIAL_DELIMITERS.delimiter);
-            currWindowArray.shift();
-            currWindowArray.push(nextWord);
-
-            currentWordWindow = currWindowArray.join(SPECIAL_DELIMITERS.delimiter);
+            currentWordWindow = Utils.slideCurrentWindow(currentWordWindow, nextWord);
         }
     }
     return newSentence;

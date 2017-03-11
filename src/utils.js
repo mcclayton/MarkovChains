@@ -23,6 +23,21 @@ const getRandomSentenceStart = (markovChain) => {
     return startingKeys[randomIndex];
 };
 
+/**
+ * Takes the serialized current window, removes the first entry in the window
+ * and slides the nextWord onto the end of the window.
+ */
+const slideCurrentWindow = (currWordWindowString = '', nextWord) => {
+    // Parse window string into array
+    const currWindowArray = currWordWindowString.split(SPECIAL_DELIMITERS.delimiter);
+    // Remove first entry of window
+    currWindowArray.shift();
+    // Add new word to end of window
+    currWindowArray.push(nextWord);
+    // Re-serialize
+    return currWindowArray.join(SPECIAL_DELIMITERS.delimiter);
+};
+
 const randomIntFromInterval = (min, max) => {
     return Math.floor(Math.random() * (max - min + 1) + min);
 };
@@ -30,5 +45,6 @@ const randomIntFromInterval = (min, max) => {
 export default {
     readFile,
     randomIntFromInterval,
-    getRandomSentenceStart
+    getRandomSentenceStart,
+    slideCurrentWindow
 };
