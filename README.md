@@ -10,7 +10,7 @@ npm run build
 
 ## Run Instructions
 
-### Run Instructions
+### Sentence Generator
 
 To Run Sentence Generator, run the following command with parameters:
 ```
