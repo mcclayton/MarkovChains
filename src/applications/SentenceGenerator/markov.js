@@ -79,9 +79,23 @@ const generateTextFromChain = (markovChain, numberOfSentences = 1) => {
     return newSentence;
 };
 
-Utils.readFile('./corpus.txt').then((data) => {
-    const chain = generateMarkovChain(data, 2);
-    console.log(generateTextFromChain(chain, 5));
+// Get the corpus filepath passed in via parameters, or use the default if not found
+const corpusFilePath = _.get(process, ['argv', 2], './corpus.txt');
+let markovOrder, numOfSentences;
+try {
+    // Get the markov order from the parameters, or default to first order markov
+    markovOrder = parseInt(_.get(process, ['argv', 3], 1));
+    // Get the number of sentences to generate, or default to 1
+    numOfSentences = parseInt(_.get(process, ['argv', 4], 1));
+} catch (err) {
+    // Could not parseInt so set defaults
+    markovOrder = 1;
+    numOfSentences = 1;
+}
+
+Utils.readFile(corpusFilePath).then((data) => {
+    const chain = generateMarkovChain(data, markovOrder);
+    console.log(generateTextFromChain(chain, numOfSentences));
 }, (err) => {
-    console.log('Error reading in corpus file.');
+    console.log(`Error reading in corpus file: ${corpusFilePath}`);
 });

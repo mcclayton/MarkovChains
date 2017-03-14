@@ -1,7 +1,7 @@
 {
   "scripts": {
     "build": "babel src -d lib",
-    "start": "node ./lib/markov.js"
+    "sentencegen": "node ./lib/applications/SentenceGenerator/markov.js"
   },
   "dependencies": {
     "fs": "0.0.1-security",
