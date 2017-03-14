@@ -8,7 +8,9 @@ To Build:
 npm run build
 ```
 
-To Run:
+To Run Sentence Generator:
 ```
-npm run start
+npm run sentencegen <filepath> <markovModelOrder> <numOfSentencesToGenerate>
 ```
+Ex:
+`npm run sentencegen ~/Desktop/myDataFile.txt 2 10`
