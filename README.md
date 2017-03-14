@@ -2,13 +2,17 @@
 Experimenting with practical applications of first and higher order Markov Chains.
 
 
-## Build / Run Instructions
-To Build:
+## Build Instructions
+To Build all of the applications, run the following command:
 ```
 npm run build
 ```
 
-To Run Sentence Generator:
+## Run Instructions
+
+### Run Instructions
+
+To Run Sentence Generator, run the following command with parameters:
 ```
 npm run sentencegen <filepath> <markovModelOrder> <numOfSentencesToGenerate>
 ```
